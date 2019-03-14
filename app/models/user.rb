@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     end
 
     def remove_coffeeshop_from_favorites(coffeeshop)
-        if cs = FavoritedCoffeeshop.all.detect {|c| c.user == self && c.coffeeshop == coffeeshop }
+        if cs = FavoritedCoffeeshop.find_by(user: self, coffeeshop: coffeeshop)
             cs.destroy
             self.reload
         end
