@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_191555) do
+ActiveRecord::Schema.define(version: 2019_03_14_230328) do
 
   create_table "coffeeshops", force: :cascade do |t|
     t.string "name"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_191555) do
     t.integer "review_id"
   end
 
-  create_table "favorite_coffeeshops", force: :cascade do |t|
+  create_table "favorited_coffeeshops", force: :cascade do |t|
     t.integer "user_id"
     t.integer "coffeeshop_id"
   end
