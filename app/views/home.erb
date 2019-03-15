@@ -1,0 +1,27 @@
+<% if logged_in? %>
+    <div class="display-box">
+        <h4 class="text-box">Coffeeshops in your area.</h4>
+        <% current_user.location.coffeeshops.each do |cs| %>
+            <div class="cs-box">
+                <h6><%= cs.name %></h6>
+                <p><%= cs.steet_address %></p>
+                <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
+
+            </div>
+        <% end %>
+    </div>
+
+    <div class="display-box">
+        <h4 class="text-box">Your Favorites.</h4>
+        <% current_user.favorite_coffeeshops.each do |cs| %>
+            <div class="cs-box">
+                <h6><%= cs.name %></h6>
+                <p><%= cs.steet_address %></p>
+                <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
+
+            </div>
+        <% end %>
+    </div>
+<% else %>
+    <a href="/login" class="login-button">Login</a>
+<% end %>
