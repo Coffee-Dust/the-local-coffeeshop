@@ -12,4 +12,9 @@ class Coffeeshop < ActiveRecord::Base
         return names_in_order
     end
 
+    def rating
+        r = self.reviews.average("rating")
+        sprintf("%.1f", r)
+    end
+
 end
