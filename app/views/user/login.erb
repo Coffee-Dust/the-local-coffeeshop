@@ -1,0 +1,17 @@
+<% if session[:errors] == "login" %>
+    <div class="error-ribbon"><h4>Incorrect email/password</h4></div>
+<% elsif session[:errors] == "login_blank" %>
+    <div class="error-ribbon"><h4>Email/Password fields cannot be blank!</h4></div>
+<% end %>
+
+<form action="/login" method="post">
+    <label for="email">Email:</label>
+    <input type="text" name="email" id="email">
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+
+    <button type="submit">login</button>
+</form>
+
+<div class="text-box">or <a href="/signup">sign up!</a></div>
