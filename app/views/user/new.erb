@@ -1,0 +1,27 @@
+
+<%= "<div class=\"error-ribbon\"><h4>Please fill out all fields.</h4></div>" if @user && @user.errors.any? %>
+
+<form action="/signup" method="post">
+
+    <label for="name">Name:</label>
+    <input type="text" name="user[name]" id="name">
+
+    <label for="email">Email:</label>
+    <input type="text" name="user[email]" id="email">
+
+    <label for="password">Password:</label>
+    <input type="password" name="user[password]" id="password">
+
+    <label>Please choose a location: </label>
+    <% Location.all.each.sort_by(&:state).each do |location| %>
+        <input type="radio" name="user[location_id]" value="<%= location.id %>">
+        <%= "#{location.city}, #{location.state}" %>
+        </input>
+    <% end %>
+    <br>
+    <label>If it is not listed, please type it in:</label>
+    <input type="text" name="location[city]" placeholder="City Name">
+    <input type="text" name="location[state]" placeholder="State Code">
+
+    <button type="submit">Signup</button>
+</form>
