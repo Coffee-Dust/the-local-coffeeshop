@@ -4,7 +4,7 @@
         <% current_user.location.coffeeshops.each do |cs| %>
             <div class="cs-box">
                 <h6><%= cs.name %></h6>
-                <p><%= cs.steet_address %></p>
+                <p><%= cs.street_address %></p>
                 <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
 
             </div>
@@ -16,7 +16,7 @@
         <% current_user.favorite_coffeeshops.each do |cs| %>
             <div class="cs-box">
                 <h6><%= cs.name %></h6>
-                <p><%= cs.steet_address %></p>
+                <p><%= cs.street_address %></p>
                 <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
 
             </div>
