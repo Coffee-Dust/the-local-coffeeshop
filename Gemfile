@@ -10,6 +10,7 @@ gem 'sinatra'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'require_all'
 gem 'rack'
+gem 'bcrypt'
 
 group :development do
     gem 'pry'
