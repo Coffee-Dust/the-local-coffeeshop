@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     has_many :favorited_coffeeshops
     has_many :favorite_coffeeshops, through: :favorited_coffeeshops, source: :coffeeshop
 
-
+    belongs_to :location
 
     def add_coffeeshop_to_favorites(coffeeshop)
         self.favorite_coffeeshops.push(coffeeshop)
