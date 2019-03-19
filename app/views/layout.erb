@@ -12,6 +12,7 @@
         <a href="/coffeeshops">Coffeeshops</a>
         <a href="/locations">Locations</a>
         <a href="/profile">Profile</a>
+        <%= logged_in? ? "<a href=\"/logout\">Logout</a>" : "<a href=\"/login\">Login</a>" %>
         </nav>
     </header>
 
