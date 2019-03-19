@@ -14,6 +14,7 @@ class Coffeeshop < ActiveRecord::Base
 
     def rating
         r = self.reviews.average("rating")
+        return 0 if r == nil
         sprintf("%.1f", r)
     end
 
