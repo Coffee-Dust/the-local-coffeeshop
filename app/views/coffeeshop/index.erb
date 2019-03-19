@@ -1,0 +1,9 @@
+<% @coffeeshops.order("name").each do |cs| %>
+    <div>
+        <a href="/coffeeshops/<%= cs.id %>/<%= cs.name.to_slug %>" style="display: block; text-decoration: none; color: black;">
+            <h4><%= cs.name %></h4>
+            <img src="<%= cs.picture_url %>" alt="<%=cs.name%> picture">
+            <p> <%= "#{cs.rating} star rating." if cs.rating.to_i > 0 %> </p>
+        </a>
+    </div>
+<% end %>

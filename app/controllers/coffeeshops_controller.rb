@@ -1,5 +1,6 @@
 class CoffeeshopsController < ApplicationController
     get "/coffeeshops" do
+        @coffeeshops = Coffeeshop.all
         erb :"coffeeshop/index"
     end
 
@@ -21,7 +22,7 @@ class CoffeeshopsController < ApplicationController
     end
 
     patch "/coffeeshops/:id/:slug" do
-        
+
     end
 
 end
