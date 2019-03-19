@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+    get "/profile" do
+        erb :"user/show"
+    end
+
     get "/login" do
         if !logged_in?
             session[:errrors] = ""
@@ -39,7 +43,7 @@ class UsersController < ApplicationController
         if new_location_requested?
             @user.build_location(city: params[:location][:city], state: params[:location][:state])
         end
-        
+
         if @user.save
             session[:user_id] = @user.id
             redirect "/"

@@ -1,0 +1,26 @@
+<% if logged_in? %>
+    <div>
+        <h4>Hello, <%= current_user.name %>!</h4>
+        <h5>Location</h5>
+        <ul>
+            <li><%= current_user.location.city %>, <%= current_user.location.state %> </li>
+        </ul>
+
+        <h5>Email</h5>
+        <ul>
+            <li><%= current_user.email %></li>
+        </ul>
+
+        <h5>Reviews: </h5>
+        <% current_user.reviews.each do |review| %>
+            <div>
+                Title: <a href="/reviews/<%= review.id %>/<%= review.title %>%"><%= review.title %></a>
+                <p>Coffeeshop: <%= review.coffeeshop.name %></p>
+                <p><%= review.content.split(" ").collect.with_index{|w,i| w if i < 10}.join(" ") + "..." %></p>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+    <a href="/login" class="login-button">Login</a>
+<% end %>
+
