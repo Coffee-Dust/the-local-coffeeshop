@@ -35,14 +35,37 @@ class ReviewsController < ApplicationController
     end
 
     get "/reviews/:id/edit" do
-        erb :"reviews/edit"
+        @review = Review.find(params[:id])
+        if logged_in? && current_user == @review.user
+            erb :"reviews/edit"
+        else
+            redirect "/reviews/#{@review.id}"
+        end
     end
 
     patch "/reviews/:id" do
+        @review = Review.find(params[:id])
 
+        if current_user == @review.user
+            if @review.update(params[:review])
+                redirect "/reviews/#{@review.id}"
+            else
+                erb :"reviews/edit"
+            end
+        else
+            redirect "/reviews/#{@review.id}"
+        end
     end
 
     delete "/reviews/:id" do
+        @review = Review.find(params[:id])
 
+        if current_user == @review.user
+            @review.destroy
+            redirect "/profile"
+        else
+            redirect "/reviews/#{@review.id}"
+        end
     end
+
 end
