@@ -1,4 +1,5 @@
 <h4>Create a new review for <%= @coffeeshop.name %></h4>
+<%= "<div class=\"error-ribbon\"><h4>Please fill out all fields.</h4></div>" if @review && @review.errors.any? || @drink && @drink.errors.any? %>
 
 <form action="/reviews" method="post">
     <input type="hidden" name="review[coffeeshop_id]" value="<%= @coffeeshop.id %>">
@@ -20,13 +21,13 @@
 
     <div class="popular-drinks-form">
         <h5>Which drink was your favorite?</h5>
-        <input type="hidden" name="drink[coffeeshop_id" value="<%= @coffeeshop.id %>">
+        <input type="hidden" name="drink[coffeeshop_id]" value="<%= @coffeeshop.id %>">
         <% @coffeeshop.sort_popular_drinks.each do |drink| %>
             <input type="radio" name="drink[name]" value="<%= drink %>"><%= drink %></input>
         <% end %>
         <br>
         <label for="drink-name">if not listed, please type in the name:</label>
-        <input type="text" name="drink[name]" id="drink-name" placeholder="Drink Name">
+        <input type="text" name="new_drink[name]" id="drink-name" placeholder="Drink Name">
     </div>
 
     <button type="submit">Post Review</button>
