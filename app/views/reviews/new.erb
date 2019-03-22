@@ -1,0 +1,20 @@
+<h4>Create a new review for <%= @coffeeshop.name %></h4>
+
+<form action="/reviews" method="post">
+    <input type="hidden" name="coffeeshop_id" value="<%= @coffeeshop.id %>">
+    <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+    <div class="rating-box">
+        <label>Rating</label>
+        <% 5.times do |i| %>
+            <% i += 1 %>
+            <input type="radio" name="rating" value="<%= i %>"> <%= i %> ⭐️ </input>
+        <% end %>
+    </div>
+
+    <label for="review-title">Title</label>
+    <input type="text" name="title" id="review-title">
+
+    <label for="review-content">Content</label>
+    <textarea name="content" id="review-content" cols="30" rows="10"></textarea>
+</form>
