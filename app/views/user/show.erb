@@ -14,9 +14,11 @@
         <h5>Reviews: </h5>
         <% current_user.reviews.each do |review| %>
             <div>
-                Title: <a href="/reviews/<%= review.id %>/<%= review.title %>%"><%= review.title %></a>
-                <p>Coffeeshop: <%= review.coffeeshop.name %></p>
-                <p><%= review.content.split(" ").collect.with_index{|w,i| w if i < 10}.join(" ") + "..." %></p>
+                <a href="/reviews/<%= review.id %>" class="anchor-box" style="display: block; text-decoration: none; color: black;">
+                    <p>Coffeeshop: <%= review.coffeeshop.name %></p>
+                    <%= review.title %>
+                    <p><%= review.content.split(" ").collect.with_index{|w,i| w if i < 10}.join(" ") + "..." %></p>
+                </a>
             </div>
         <% end %>
     </div>

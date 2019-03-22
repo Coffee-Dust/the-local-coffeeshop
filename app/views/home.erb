@@ -3,10 +3,11 @@
         <h4 class="text-box">Coffeeshops in your area.</h4>
         <% current_user.location.coffeeshops.each do |cs| %>
             <div class="cs-box">
-                <h6><%= cs.name %></h6>
-                <p><%= cs.street_address %></p>
-                <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
-
+                <a href="/coffeeshops/<%= cs.id %>/<%= cs.name.to_slug %>" style="display: block; text-decoration: none; color: black;">
+                    <h6><%= cs.name %></h6>
+                    <p><%= cs.street_address %></p>
+                    <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
+                </a>
             </div>
         <% end %>
     </div>
@@ -15,10 +16,11 @@
         <h4 class="text-box">Your Favorites.</h4>
         <% current_user.favorite_coffeeshops.each do |cs| %>
             <div class="cs-box">
-                <h6><%= cs.name %></h6>
-                <p><%= cs.street_address %></p>
-                <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
-
+                <a href="/coffeeshops/<%= cs.id %>/<%= cs.name.to_slug %>" style="display: block; text-decoration: none; color: black;">
+                    <h6><%= cs.name %></h6>
+                    <p><%= cs.street_address %></p>
+                    <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
+                </a>
             </div>
         <% end %>
     </div>
