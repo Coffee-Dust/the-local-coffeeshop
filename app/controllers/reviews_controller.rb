@@ -24,4 +24,25 @@ class ReviewsController < ApplicationController
             erb :"reviews/new"
         end
     end
+
+    get "/reviews/:id" do
+        if logged_in?
+            @review = Review.find(params[:id])
+            erb :"reviews/show"
+        else
+            redirect :"/login"
+        end
+    end
+
+    get "/reviews/:id/edit" do
+        erb :"reviews/edit"
+    end
+
+    patch "/reviews/:id" do
+
+    end
+
+    delete "/reviews/:id" do
+
+    end
 end
