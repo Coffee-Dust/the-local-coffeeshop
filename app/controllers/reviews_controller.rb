@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
             @drink = Drink.new(name: params[:new_drink][:name], coffeeshop_id: params[:drink][:coffeeshop_id])
         end
         if @review.save && @drink.save
-            redirect "/coffeeshops/#{review.coffeeshop.id}/#{review.coffeeshop.name.to_slug}"
+            redirect "/coffeeshops/#{@review.coffeeshop.id}/#{@review.coffeeshop.name.to_slug}"
         else
             @coffeeshop = @review.coffeeshop
             erb :"reviews/new"
