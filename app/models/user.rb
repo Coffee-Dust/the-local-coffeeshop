@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
     belongs_to :location
 
-    validates_presence_of :name, :email, :password, :location
+    validates_presence_of :name, :email, :location
 
     def add_coffeeshop_to_favorites(coffeeshop)
         self.favorite_coffeeshops.push(coffeeshop)
