@@ -38,7 +38,7 @@
         <a href="/reviews/<%= review.id %>" style="display: block; text-decoration: none; color: black;">
             <h5><%= review.title %></h5>
             <%= review.user ? "by: #{review.user.name}" : "by: Local Coffeeshop User" %>
-            <p> <%= "#{review.rating} star rating." if review.rating.to_i > 0 %> </p>
+            <p> <%= review.rating.to_i.times.collect{|i| "⭐️" }.join if review.rating.to_i > 0 %> </p>
             <p><%= review.content %></p>
         </a>
     </div>

@@ -5,11 +5,7 @@
 <h4>By: <%= @review.user.name if @review.user %></h4>
 
 <h4>Coffeeshop: <a href="/coffeeshops/<%= @review.coffeeshop.id %>/<%= @review.coffeeshop.name.to_slug %>"><%= @review.coffeeshop.name %></a></h4>
-<% stars = "" %>
-<% @review.rating.to_i.times do %>
-    <% stars << "⭐️" %>
-<% end %>
-<%= stars %>
+<%= @review.rating.to_i.times.collect{|i| "⭐" }.join %>
 <p><%= @review.content %></p>
 
 <% if current_user == @review.user %>
