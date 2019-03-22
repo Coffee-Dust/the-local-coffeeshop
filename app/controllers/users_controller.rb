@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         end
 
         @user = User.find_by(email: params[:email])
-        if @user && @user.authenticate(password: params[:password])
+        if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             redirect "/"
         else
@@ -39,7 +39,6 @@ class UsersController < ApplicationController
 
     post "/signup" do
         @user = User.new(params[:user])
-
         if new_location_requested?
             @user.build_location(city: params[:location][:city], state: params[:location][:state])
         end
