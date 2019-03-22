@@ -33,7 +33,7 @@
 <% end %>
 
 <h4>Reviews: </h4>
-<% @cs.reviews.each do |review| %>
+<% @cs.reviews.order("created_at DESC").each do |review| %>
     <div class="review-box">
         <h5><%= review.title %></h5>
         <%= "by: #{review.user.name}" if review.user %>
