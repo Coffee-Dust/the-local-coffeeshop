@@ -1,5 +1,7 @@
 <h2><%= @review.title %></h2>
 
+<h4>Date: <%= @review.created_at.strftime("%A, %B %e, %Y") %></h4>
+
 <h4>By: <%= @review.user.name if @review.user %></h4>
 
 <h4>Coffeeshop: <a href="/coffeeshops/<%= @review.coffeeshop.id %>/<%= @review.coffeeshop.name.to_slug %>"><%= @review.coffeeshop.name %></a></h4>
