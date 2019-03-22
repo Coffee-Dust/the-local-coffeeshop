@@ -5,7 +5,11 @@ class CoffeeshopsController < ApplicationController
     end
 
     get "/coffeeshops/new" do
-        erb :"coffeeshop/new"
+        if current_user.admin
+            erb :"coffeeshop/new"
+        else
+            redirect "/coffeeshops"
+        end
     end
 
     post "/coffeeshops" do
@@ -13,15 +17,23 @@ class CoffeeshopsController < ApplicationController
     end
 
     get "/coffeeshops/:id/:slug" do
-        @coffeeshop = Coffeeshop.find(params[:id])
+        @cs = Coffeeshop.find(params[:id])
         erb :"coffeeshop/show"
     end
 
     get "/coffeeshops/:id/:slug/edit" do
-        erb :"coffeeshop/edit"
+        if current_user.admin
+            erb :"coffeeshop/edit"
+        else
+            redirect "/coffeeshops/#{params[:id]}/#{params[:slug]}"
+        end
     end
 
     patch "/coffeeshops/:id/:slug" do
+
+    end
+
+    delete "/coffeeshops/:id/:slug" do
 
     end
 
