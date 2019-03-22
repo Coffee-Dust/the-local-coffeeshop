@@ -35,9 +35,11 @@
 <h4>Reviews: </h4>
 <% @cs.reviews.order("created_at DESC").each do |review| %>
     <div class="review-box">
-        <h5><%= review.title %></h5>
-        <%= "by: #{review.user.name}" if review.user %>
-        <p> <%= "#{review.rating} star rating." if review.rating.to_i > 0 %> </p>
-        <p><%= review.content %></p>
+        <a href="/reviews/<%= review.id %>" style="display: block; text-decoration: none; color: black;">
+            <h5><%= review.title %></h5>
+            <%= review.user ? "by: #{review.user.name}" : "by: Local Coffeeshop User" %>
+            <p> <%= "#{review.rating} star rating." if review.rating.to_i > 0 %> </p>
+            <p><%= review.content %></p>
+        </a>
     </div>
 <% end %>
