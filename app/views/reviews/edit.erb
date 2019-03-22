@@ -1,0 +1,21 @@
+<%= "<div class=\"error-ribbon\"><h4>Please fill out all fields.</h4></div>" if @review && @review.errors.any? %>
+<h2>Edit review: <%= @review.title %></h2>
+
+<form action="/reviews/<%= @review.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <div class="rating-box">
+        <label>Rating</label>
+        <% 5.times do |i| %>
+            <% i += 1 %>
+            <input type="radio" name="review[rating]" value="<%= i %>" <%= "checked" if @review.rating == i.to_s %> > <%= i %> ⭐️ </input>
+        <% end %>
+    </div>
+
+    <label for="review-title">Title</label>
+    <input type="text" name="review[title]" id="review-title" value="<%= @review.title %>">
+
+    <label for="review-content">Content</label>
+    <textarea name="review[content]" id="review-content" cols="30" rows="10"><%= @review.content %></textarea>
+
+    <button type="submit">Update</button>
+</form>
