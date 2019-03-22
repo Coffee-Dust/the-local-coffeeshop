@@ -1,0 +1,43 @@
+<h2><%= @cs.name %></h2>
+
+<img src="<%= @cs.picture_url %>" alt="<%=@cs.name%> picture">
+
+<p><%= @cs.description %></p>
+
+<div class="coffeeshop-info-box">
+    Website: <a href="<%= @cs.website_url %>"><%=@cs.website_url%></a>
+    Phone: <a href="tel:"><%= @cs.phone %></a>
+    Hours: <%= @cs.hours %>
+    Address: <%= "#{@cs.street_address}, #{@cs.location.city} #{@cs.location.state}" %>
+</div>
+
+<h4>Most Popular Drinks: </h4>
+<ul>
+    <% @cs.sort_popular_drinks.each do |drink| %>
+        <li><%= drink %></li>
+    <% end %>
+</ul>
+
+
+<% if logged_in? %>
+    <a href="/reviews/new/<%= @cs.id %>">Write Review</a>
+<% end %>
+<br>
+<% if logged_in? && current_user.admin? %>
+    <p>Hello admin! You have the power to: </p>
+    <a href="/coffeeshops/<%= @cs.id %>/<%= @cs.name.to_slug %>/edit"><button>Edit</button></a>
+    <form action="/coffeeshops/<%= @cs.id %>/<%=@cs.name.to_slug%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+    </form>
+<% end %>
+
+<h4>Reviews: </h4>
+<% @cs.reviews.each do |review| %>
+    <div class="review-box">
+        <h5><%= review.title %></h5>
+        <%= "by: #{review.user.name}" if review.user %>
+        <p> <%= "#{review.rating} star rating." if review.rating.to_i > 0 %> </p>
+        <p><%= review.content %></p>
+    </div>
+<% end %>
