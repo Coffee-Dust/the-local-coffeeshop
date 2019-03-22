@@ -1,0 +1,27 @@
+<h2><%= @review.title %></h2>
+
+<h4>By: <%= @review.user.name if @review.user %></h4>
+
+<h4>Coffeeshop: <a href="/coffeeshops/<%= @review.coffeeshop.id %>/<%= @review.coffeeshop.name.to_slug %>"><%= @review.coffeeshop.name %></a></h4>
+<% stars = "" %>
+<% @review.rating.to_i.times do %>
+    <% stars << "⭐️" %>
+<% end %>
+<%= stars %>
+<p><%= @review.content %></p>
+
+<% if current_user == @review.user %>
+    <a href="/reviews/<%= @review.id %>/edit"><button>Edit</button></a>
+    <form action="/reviews/<%= @review.id %>" method="post" style="display: inline;">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+    </form>
+<% end %>
+
+<h4>Comments: </h4>
+<% @review.comments.each do |comment| %>
+    <div class="review-comment">
+        <h5><%= comment.user ? comment.user.name : "Local Coffeeshop User" %></h5>
+        <p><%= comment.content %></p>
+    </div>
+<% end %>
