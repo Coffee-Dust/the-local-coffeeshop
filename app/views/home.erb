@@ -1,10 +1,10 @@
 <% if logged_in? %>
     <div class="display-box">
-        <h4 class="text-box">Coffeeshops in your area.</h4>
+        <h3 class="text-box">Coffeeshops in your area.</h3>
         <% current_user.location.coffeeshops.each do |cs| %>
             <div class="cs-box">
                 <a href="/coffeeshops/<%= cs.id %>/<%= cs.name.to_slug %>" style="display: block; text-decoration: none; color: black;">
-                    <h6><%= cs.name %></h6>
+                    <h4><%= cs.name %></h4>
                     <p><%= cs.street_address %></p>
                     <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
                 </a>
@@ -17,7 +17,7 @@
         <% current_user.favorite_coffeeshops.each do |cs| %>
             <div class="cs-box">
                 <a href="/coffeeshops/<%= cs.id %>/<%= cs.name.to_slug %>" style="display: block; text-decoration: none; color: black;">
-                    <h6><%= cs.name %></h6>
+                    <h4><%= cs.name %></h4>
                     <p><%= cs.street_address %></p>
                     <img src="<%= cs.picture_url %>" alt="<%= cs.name %> picture">
                 </a>
