@@ -1,3 +1,8 @@
+
+<% if logged_in? && current_user.admin %>
+    <a href="/coffeeshops/new"><button>New Coffeeshop</button></a>
+<% end %>
+
 <% @coffeeshops.order("name").each do |cs| %>
     <div>
         <a href="/coffeeshops/<%= cs.id %>/<%= cs.name.to_slug %>" style="display: block; text-decoration: none; color: black;">
