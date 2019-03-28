@@ -20,7 +20,8 @@
 
 
 <% if logged_in? %>
-    <a href="/reviews/new/<%= @cs.id %>">Write Review</a>
+    <a href="/reviews/new/<%= @cs.id %>"><button>Write Review</button></a>
+    <a href="/favorite-coffeeshop/<%= @cs.id %>"><button><%= current_user.favorite_coffeeshops.include?(@cs) ? "Unfavorite" : "Favorite" %></button></a>
 <% end %>
 <br>
 <% if logged_in? && current_user.admin? %>

@@ -4,6 +4,19 @@ class UsersController < ApplicationController
         erb :"user/show"
     end
 
+    get "/favorite-coffeeshop/:coffeeshop" do
+        if logged_in?
+            @cs = Coffeeshop.find(params[:coffeeshop])
+            if current_user.favorite_coffeeshops.include?(@cs)
+                current_user.remove_coffeeshop_from_favorites(@cs)
+                redirect "/coffeeshops/#{@cs.id}/#{@cs.name.to_slug}"
+            else
+                current_user.add_coffeeshop_to_favorites(@cs)
+                redirect "/coffeeshops/#{@cs.id}/#{@cs.name.to_slug}"
+            end
+        end
+    end
+
     get "/login" do
         if !logged_in?
             session[:errrors] = ""
