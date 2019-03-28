@@ -1,0 +1,34 @@
+<%= "<div class='error-ribbon'><h4>Please fill out all fields.</h4></div>" if @coffeeshop && @coffeeshop.errors.any? %>
+<h2>Make a new coffeshop.</h2>
+
+<form action="/coffeeshops" method="post">
+
+    <label for="cs-name">Name:</label>
+    <input type="text" name="coffeeshop[name]" id="cs-name">
+
+    <label for="cs-img">Image URL:</label>
+    <input type="text" name="coffeeshop[picture_url]" id="cs-img">
+
+    <label for="cs-website">Website URL:</label>
+    <input type="text" name="coffeeshop[website_url]" id="cs-website">
+
+    <label for="cs-phone">Phone:</label>
+    <input type="text" name="coffeeshop[phone]" id="cs-phone">
+
+    <label for="cs-hours">Hours:</label>
+    <input type="text" name="coffeeshop[hours]" id="cs-hours">
+
+    <label for="cs-address">Street address:</label>
+    <input type="text" name="coffeeshop[street_address]" id="cs-address" placeholder="999 Main St.">
+
+    <% Location.all.each.sort_by(&:state).each do |location| %>
+        <input type="radio" name="coffeeshop[location_id]" value="<%= location.id %>">
+            <%= "#{location.city}, #{location.state}" %>
+        </input>
+    <% end %>
+    <label>or if not listed, type in the city and state:</label>
+    <input type="text" name="location[city]" placeholder="City">
+    <input type="text" name="location[state]" placeholder="State">
+
+    <input type="submit" value="Submit">
+</form>

@@ -5,7 +5,7 @@ class CoffeeshopsController < ApplicationController
     end
 
     get "/coffeeshops/new" do
-        if current_user.admin
+        if logged_in? && current_user.admin
             erb :"coffeeshop/new"
         else
             redirect "/coffeeshops"
@@ -13,7 +13,18 @@ class CoffeeshopsController < ApplicationController
     end
 
     post "/coffeeshops" do
+        if logged_in? && current_user.admin
+            @coffeeshop = Coffeeshop.new(params[:coffeeshop])
+            if new_location_requested?
+                @coffeeshop.build_location(params[:location])
+            end
 
+            if @coffeeshop.save
+                redirect "/coffeeshops/#{@coffeeshop.id}/#{@coffeeshop.name.to_slug}"
+            else
+                erb :"coffeeshop/new"
+            end
+        end
     end
 
     get "/coffeeshops/:id/:slug" do
@@ -35,6 +46,12 @@ class CoffeeshopsController < ApplicationController
 
     delete "/coffeeshops/:id/:slug" do
 
+    end
+
+    helpers do
+        def new_location_requested?
+            !params[:location][:city].empty?
+        end
     end
 
 end
