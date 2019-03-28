@@ -33,15 +33,30 @@ class CoffeeshopsController < ApplicationController
     end
 
     get "/coffeeshops/:id/:slug/edit" do
-        if current_user.admin
+        if logged_in? && current_user.admin
+            @cs = Coffeeshop.find(params[:id])
             erb :"coffeeshop/edit"
         else
             redirect "/coffeeshops/#{params[:id]}/#{params[:slug]}"
         end
     end
 
-    patch "/coffeeshops/:id/:slug" do
+    patch "/coffeeshops/:id" do
+        if logged_in? && current_user.admin
+            @cs = Coffeeshop.find(params[:id])
+            @cs.update(params[:coffeeshop])
 
+            if new_location_requested?
+                @cs.location = nil
+                @cs.build_location(params[:location])
+            end
+
+            if @cs.save
+                redirect "/coffeeshops/#{@cs.id}/#{@cs.name.to_slug}"
+            else
+                erb :"coffeeshop/edit"
+            end
+        end
     end
 
     delete "/coffeeshops/:id/:slug" do

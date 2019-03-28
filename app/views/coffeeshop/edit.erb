@@ -1,0 +1,35 @@
+<%= "<div class='error-ribbon'><h4>Please fill out all fields.</h4></div>" if @cs && @cs.errors.any? %>
+<h2>Update Coffeeshop: <%= @cs.name %></h2>
+
+<form action="/coffeeshops/<%= @cs.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+
+    <label for="cs-name">Name:</label>
+    <input type="text" name="coffeeshop[name]" id="cs-name" value="<%= @cs.name %>">
+
+    <label for="cs-img">Image URL:</label>
+    <input type="text" name="coffeeshop[picture_url]" id="cs-img" value="<%= @cs.picture_url %>">
+
+    <label for="cs-website">Website URL:</label>
+    <input type="text" name="coffeeshop[website_url]" id="cs-website" value="<%= @cs.website_url %>">
+
+    <label for="cs-phone">Phone:</label>
+    <input type="text" name="coffeeshop[phone]" id="cs-phone" value="<%= @cs.phone %>">
+
+    <label for="cs-hours">Hours:</label>
+    <input type="text" name="coffeeshop[hours]" id="cs-hours" value="<%= @cs.hours %>">
+
+    <label for="cs-address">Street address:</label>
+    <input type="text" name="coffeeshop[street_address]" id="cs-address" value="<%= @cs.street_address %>">
+
+    <% Location.all.each.sort_by(&:state).each do |location| %>
+        <input type="radio" name="coffeeshop[location_id]" <%= "checked" if location.id == @cs.location.id %> value="<%= location.id %>" >
+            <%= "#{location.city}, #{location.state}" %>
+        </input>
+    <% end %>
+    <label>or if not listed, type in the city and state:</label>
+    <input type="text" name="location[city]" placeholder="City">
+    <input type="text" name="location[state]" placeholder="State">
+
+    <input type="submit" value="Update">
+</form>
