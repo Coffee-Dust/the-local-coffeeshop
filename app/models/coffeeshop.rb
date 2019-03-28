@@ -4,7 +4,7 @@ class Coffeeshop < ActiveRecord::Base
 
     has_many :popular_drinks, class_name: "Drink"
 
-    validates_presence_of :name, :location_id
+    validates_presence_of :name, :location
 
 
     def sort_popular_drinks
