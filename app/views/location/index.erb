@@ -1,0 +1,8 @@
+<div class="location-holder">
+    <% @locations.sort_by(&:state).each do |location| %>
+        <br>
+        <a href="/locations/<%= location.id %>/<%= location.slug %>">
+            <%= "#{location.city}, #{location.state}" %>
+        </a>
+    <% end %>
+</div>
