@@ -4,6 +4,8 @@ class Coffeeshop < ActiveRecord::Base
 
     has_many :popular_drinks, class_name: "Drink"
 
+    validates_presence_of :name, :location_id
+
 
     def sort_popular_drinks
         count = self.popular_drinks.group("name").count
