@@ -60,7 +60,12 @@ class CoffeeshopsController < ApplicationController
     end
 
     delete "/coffeeshops/:id/:slug" do
-
+        if logged_in? && current_user.admin
+            cs = Coffeeshop.find(params[:id])
+            cs.reviews.destroy_all
+            cs.destroy
+            redirect "/coffeeshops"
+        end
     end
 
     helpers do
