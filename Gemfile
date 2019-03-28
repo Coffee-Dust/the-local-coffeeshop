@@ -11,6 +11,7 @@ gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'require_all'
 gem 'rack'
 gem 'bcrypt'
+gem 'rack-flash3', require: 'rack-flash'
 
 group :development do
     gem 'pry'

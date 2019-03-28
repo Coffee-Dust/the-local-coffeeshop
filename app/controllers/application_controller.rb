@@ -7,6 +7,8 @@ class ApplicationController < Sinatra::Base
         set :session_secret, "*(!@&$*(&!@JHO*ASYLJKDH*(U@!(&DISAHJD*&!@*(&D*(!@JKHJKSACXJNKAJSD*@!&(*&ISmashedMyFaceontheKeyboardForThissupersecretsessionsecret"
     end
 
+    use Rack::Flash
+
     get "/" do
         erb :home
     end
