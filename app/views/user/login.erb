@@ -1,8 +1,4 @@
-<% if session[:errors] == "login" %>
-    <div class="error-ribbon"><h4>Incorrect email/password</h4></div>
-<% elsif session[:errors] == "login_blank" %>
-    <div class="error-ribbon"><h4>Email/Password fields cannot be blank!</h4></div>
-<% end %>
+<%= "<div class='error-ribbon'><h4>#{flash[:message]}</h4></div>" if flash.has?(:message) %>
 
 <form action="/login" method="post">
     <label for="email">Email:</label>

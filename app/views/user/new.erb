@@ -1,6 +1,6 @@
 
-<%= "<div class=\"error-ribbon\"><h4>Please fill out all fields.</h4></div>" if @user && @user.errors.any? %>
-
+<%= "<div class='error-ribbon'><h4>Please fill out all fields.</h4></div>" if @user && @user.errors.any? %>
+<%= "<div class='error-ribbon'><h4>#{flash[:message]}</h4></div>" if flash.has?(:message) %>
 <form action="/signup" method="post">
 
     <label for="name">Name:</label>
