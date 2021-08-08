@@ -12,6 +12,10 @@
     <label for="password">Password:</label>
     <input type="password" name="user[password]" id="password">
 
+    <label for="admin">You want the power to create and destroy(coffeeshops)?</label>
+    <label for="admin">Then check here for Admin</label>
+    <input type="checkbox" name="user[admin]" id="admin">
+
     <label>Please choose a location: </label>
     <% Location.all.each.sort_by(&:state).each do |location| %>
         <input type="radio" name="user[location_id]" value="<%= location.id %>">
